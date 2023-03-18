@@ -1,0 +1,11 @@
+#calendar {
+  width: 400px;
+  height: 400px;
+  background-color: red;
+  @media screen and (max-width: 700px) {
+    background-color: blue;
+  }
+  @media screen and (max-width: 600px) {
+    background-color: black;
+  }
+}
