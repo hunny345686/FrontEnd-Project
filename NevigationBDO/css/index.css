@@ -12,7 +12,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   display: block;
 }
 .topMostMenu {
-  background-color: #e5f5ff;
+  background-color: rgba(229, 245, 255, 0.863);
 }
 .topMostMenu .navbar-nav {
   flex-direction: row;

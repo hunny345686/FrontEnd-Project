@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Rubik:wght@400;500&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        font-family: "Rubik", sans-serif;
+      }
+
+      :root {
+        --bg-main: #464646;
+        --bg-card: #2d2727;
+        --border-color: #efc745;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5rem;
+        background-color: var(--bg-main);
+      }
+
+      h1 {
+        color: #fff;
+        font-family: "Lexend Deca Light";
+        font-size: 4rem;
+      }
+
+      span {
+        color: var(--border-color);
+      }
+
+      #card-section {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 1rem;
+      }
+      .card {
+        width: 100px;
+        height: 100px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: scaleX(-1);
+      }
+      .card:hover {
+        scale: 1.1;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: var(--border-color);
+      }
+      .cardClick {
+        transform: revert;
+        transition: transform 0.5s ease;
+      }
+      .cardClick::before {
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Match The <span>Images</span></h1>
+    <section id="card-section"></section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="./main.js"></script> -->
+
+    <script>
+      let cardsArray = [
+        {
+          name: "CSS",
+          img: "http://thapatechnical.online/logos/css.png",
+        },
+        {
+          name: "HTML",
+          img: "http://thapatechnical.online/logos/html5.png",
+        },
+        {
+          name: "jQuery",
+          img: "http://thapatechnical.online/logos/jquery.png",
+        },
+        {
+          name: "JS",
+          img: "http://thapatechnical.online/logos/js.png",
+        },
+        {
+          name: "Node",
+          img: "http://thapatechnical.online/logos/nodejs.png",
+        },
+        {
+          name: "Python",
+          img: "http://thapatechnical.online/logos/python.png",
+        },
+      ];
+      let dubbleCard = cardsArray.concat(cardsArray);
+      let count = 0;
+      let shuffledChild = Array.from(dubbleCard).sort(
+        () => 0.5 - Math.random()
+      );
+      const allCards = shuffledChild.map((item, ind) => {
+        return `<div data-name=${item.name} data-index=${ind} class="card" style=background-image:url(${item.img});></div>`;
+      });
+      $("#card-section").html(allCards);
+
+      // compare the cards ====
+
+      $(".card").on("click", function (e) {
+        count++;
+        if (count < 3) {
+          $(this).addClass("cardClick");
+        }
+        if (count === 2) {
+        }
+      });
+      // console.log(shuffledChild);
+    </script>
+  </body>
+</html>
