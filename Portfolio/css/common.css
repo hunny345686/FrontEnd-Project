@@ -1,0 +1,31 @@
+:root {
+  /* colors */
+  --blue: #1e90ff;
+  --white: #ffffff;
+
+  /* fonts */
+  --fs40: 40px;
+}
+
+/* themes  */
+:root {
+  /* Royal blue & peach */
+  --royal-blue: #00539cff;
+  --peach: #eea47fff;
+  --lightpeach: #eea47f54;
+}
+/* common css  */
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
