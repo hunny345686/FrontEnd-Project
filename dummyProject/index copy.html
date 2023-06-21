@@ -49,16 +49,14 @@
         background: #fff;
         margin-top: -8px;
       }
+      .cjekced {
+        background: red;
+      }
     </style>
 
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="range-wrap">
-      <input type="range" class="range" />
-      <output class="bubble"></output>
-    </div>
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -70,30 +68,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script>
-      const allRanges = document.querySelectorAll(".range-wrap");
-      allRanges.forEach((wrap) => {
-        const range = wrap.querySelector(".range");
-        const bubble = wrap.querySelector(".bubble");
-
-        range.addEventListener("input", () => {
-          setBubble(range, bubble);
-        });
-        setBubble(range, bubble);
-      });
-
-      function setBubble(range, bubble) {
-        const val = range.value;
-        const min = range.min ? range.min : 0;
-        const max = range.max ? range.max : 100;
-        const newVal = Number(((val - min) * 100) / (max - min));
-        bubble.innerHTML = val;
-
-        // Sorta magic numbers based on size of the native UI thumb
-        bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-      }
-    </script>
-
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -101,3 +75,95 @@
     -->
   </body>
 </html>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseOne"
+        aria-expanded="true"
+        aria-controls="panelsStayOpen-collapseOne"
+      >
+        Accordion Item #1
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="panelsStayOpen-headingOne"
+    >
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by
+        default, until the collapse plugin adds the appropriate classes that we
+        use to style each element. These classes control the overall appearance,
+        as well as the showing and hiding via CSS transitions. You can modify
+        any of this with custom CSS or overriding our default variables. It's
+        also worth noting that just about any HTML can go within the
+        <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseTwo"
+        aria-expanded="false"
+        aria-controls="panelsStayOpen-collapseTwo"
+      >
+        Accordion Item #2
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseTwo"
+      class="accordion-collapse collapse"
+      aria-labelledby="panelsStayOpen-headingTwo"
+    >
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong> It is hidden
+        by default, until the collapse plugin adds the appropriate classes that
+        we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You
+        can modify any of this with custom CSS or overriding our default
+        variables. It's also worth noting that just about any HTML can go within
+        the <code>.accordion-body</code>, though the transition does limit
+        overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseThree"
+        aria-expanded="false"
+        aria-controls="panelsStayOpen-collapseThree"
+      >
+        Accordion Item #3
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseThree"
+      class="accordion-collapse collapse"
+      aria-labelledby="panelsStayOpen-headingThree"
+    >
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden
+        by default, until the collapse plugin adds the appropriate classes that
+        we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You
+        can modify any of this with custom CSS or overriding our default
+        variables. It's also worth noting that just about any HTML can go within
+        the <code>.accordion-body</code>, though the transition does limit
+        overflow.
+      </div>
+    </div>
+  </div>
+</div>

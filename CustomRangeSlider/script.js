@@ -33,6 +33,7 @@ function updateRangeEl(rangeEl) {
       ratio = ratio.split(".")[1];
     } else {
       ratio = 95;
+      console.log(ratio);
     }
     $(item).parent().find(".tooltipslider").css("left", `${ratio}%`);
   });
