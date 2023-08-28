@@ -96,15 +96,22 @@
 
    .nested-dropdown-select {
      outline: 1px solid #80808063;
-     border-radius: 8px;
      display: flex;
      align-items: center;
      justify-content: space-between;
      cursor: pointer;
-     padding: 16px 32px;
+     border-radius: 8px;
      font-size: 18px;
      font-weight: 700;
      background-color: #fff;
+   }
+
+   .nested-dropdown-select-input {
+     border-radius: 8px;
+     padding: 16px 32px;
+     width: 100%;
+     outline: none;
+     border: none;
    }
 
    .nested-dropdown-select img {
@@ -141,16 +148,12 @@
    }
 
    .nested-dropdown-wrapper.active .header {
-     height: auto;
+     height: 360px;
+     overflow-y: auto;
      visibility: visible;
      opacity: 1;
    }
 
-   ul.nav__list {
-     overflow-y: scroll;
-     max-height: 360px;
-   }
-
-   ul.nav__list::-webkit-scrollbar {
-     width: 4px;
+   .header::-webkit-scrollbar {
+     width: 0;
    }

@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Footer from "./Component/Footer";
 import Navbar from "./Component/Navbar";
+import Test from "./Component/TestingComponent/Test";
 import { GlobalStyle } from "./GlobalStyle";
 import Home from "./Pages/Home/Home";
 
@@ -10,6 +11,8 @@ const Layout = () => {
     <div className="mainConatain">
       <Navbar />
       <Outlet />
+
+      <Test/>
       <Footer />
     </div>
   );
