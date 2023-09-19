@@ -745,17 +745,691 @@
 //   $(".container").append(`<p>Hello ${count} </p>`);
 // })
 
-var maximumCount = function (nums) {
-  let positive = 0, negetive = 0
+// var maximumCount = function (nums) {
+//   let positive = 0, negetive = 0
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < 0) {
-      negetive++
-    } else if (nums[i] > 0) {
-      positive++
+//   for (let i = 0; i < nums.length; i++) {
+//     if (nums[i] < 0) {
+//       negetive++
+//     } else if (nums[i] > 0) {
+//       positive++
+//     }
+//   }
+//   return positive > negetive ? positive : negetive
+// };
+
+// console.log(maximumCount([-3, -2, -1, 0, 0, 1, 2]))
+
+
+// singly Link List ==============================
+
+
+// class Node {
+//   constructor(val) {
+//     this.val = val;
+//     this.next = null
+//   }
+// }
+
+// class SinglyLinkList {
+//   constructor() {
+//     this.length = 0;
+//     this.head = null;
+//     this.tail = null;
+//   }
+
+//   push(val) {
+//     let newNode = new Node(val)
+//     if (!this.head) {
+//       this.head = newNode
+//       this.tail = this.head
+//     } else {
+//       this.tail.next = newNode
+//       this.tail = newNode
+//     }
+//     this.length++
+//     return this
+//   }
+//   traverse() {
+//     let curr = this.head
+//     while (curr) {
+//       curr = curr.next
+//     }
+//   }
+//   pop() {
+//     if (!this.head) return
+//     let curr = this.head
+//     let newTail = curr
+//     while (curr.next) {
+//       newTail = curr
+//       curr = curr.next
+//     }
+//     this.tail = newTail
+//     this.tail.next = null
+//     this.length--
+//     if (this.length === 0) {
+//       this.head = null;
+//       this.tail = null;
+//     }
+//     return curr
+//   }
+
+//   shift() {
+//     if (!this.head) return
+//     var currHead = this.head
+//     this.head = currHead.next
+//     this.length--
+//     if (this.length === 0) this.tail = null;
+//     return currHead
+//   }
+
+
+
+//   unshift(val) {
+//     let newNode = new Node(val)
+//     if (!this.head) {
+//       this.head = newNode
+//       this.tail = this.head
+//     } else {
+//       newNode.next = this.head
+//       this.head = newNode
+//     }
+//     this.length++
+//     return this
+//   }
+//   getIndexVal(index) {
+//     if (index < 0 || index >= this.length) return
+//     let counter = 0
+//     let curr = this.head
+//     while (counter !== index) {
+//       curr = curr.next;
+//       counter++
+//     }
+//     return curr
+//   }
+//   setIndexVal(index, val) {
+//     let foundNode = this.getIndexVal(index)
+//     if (foundNode) {
+//       foundNode.val = val
+//       return
+//     }
+//     return false
+//   }
+
+//   insertNewNode(index, val) {
+//     if (index < 0 || index >= this.length) return
+//     if (index == 0) return !!this.unshift(val)
+//     if (index == this.length) return !!this.push(val)
+//     let newNode = new Node(val)
+//     let prev = this.getIndexVal(index - 1)
+//     let temp = prev.next
+//     prev.next = newNode
+//     newNode.next = temp
+//     this.length++
+//     return true
+//   }
+
+//   removeIndexVal(index) {
+//     if (index < 0 || index >= this.length) return
+//     if (index == 0) return this.shift()
+//     if (index == this.length) return this.pop()
+//     let prevNode = this.getIndexVal(index - 1)
+//     let removedNode = prevNode.next
+//     prevNode.next = removedNode.next
+//     this.length--
+//     return removedNode
+//   }
+//   reversLL() {
+//     let temp = this.head
+//     this.head = this.tail
+//     this.tail = temp
+//     let next;
+//     let prev = null
+//     for (let i = 0; i < this.length; i++) {
+//       next = temp.next
+//       temp.next = prev
+//       prev = temp
+//       temp = next
+//     }
+//     return this
+//   }
+//   print() {
+//     let arr = []
+//     let curr = this.head
+//     while (curr) {
+//       arr.push(curr.val)
+//       curr = curr.next
+//     }
+//     console.log(arr)
+//   }
+
+// }
+
+
+// let list = new SinglyLinkList()
+
+// list.push(40)
+// list.push(50)
+// list.push(30)
+// list.push(20)
+// list.traverse()
+// list.pop()
+// list.shift()
+// list.unshift(70)
+// list.unshift(70)
+// console.log(list.getIndexVal(2))
+// list.setIndexVal(2, 90)
+// list.insertNewNode(1, 10)
+// list.removeIndexVal(1)
+// list.print()
+// list.reversLL()
+// list.print()
+
+// console.log(list)
+
+// Doubly Link List =======================================================
+// class Noded {
+//   constructor(val) {
+//     this.val = val
+//     this.next = null
+//     this.prev = null
+//   }
+// }
+
+// class doublyLinkList {
+//   constructor() {
+//     this.head = null
+//     this.tail = null
+//     this.length = 0
+//   }
+
+//   push(val) {
+//     let newNode = new Noded(val)
+//     if (this.length === 0) {
+//       this.head = newNode
+//       this.tail = newNode
+//     } else {
+//       this.tail.next = newNode;
+//       newNode.prev = this.tail
+//       this.tail = newNode
+//     }
+//     this.length++
+//     return this
+//   }
+//   pop() {
+//     if (!this.head) return undefined
+//     let popedNode = this.tail
+//     if (this.length === 1) {
+//       this.head = null
+//       this.tail = null
+//     } else {
+//       this.tail = popedNode.prev
+//       this.tail.next = null
+//       popedNode.prev = null
+//     }
+//     this.length--
+//     return popedNode
+//   }
+//   shift() {
+//     if (!this.head) return undefined
+//     let shiftNode = this.head
+//     if (this.length === 1) {
+//       this.head = null
+//       this.tail = null
+//     } else {
+//       this.head = shiftNode.next
+//       this.head.prev = null
+//       shiftNode.next = null
+//     }
+//     this.length--
+//     return shiftNode
+//   }
+//   unshift(val) {
+//     let newNode = new Noded(val)
+//     if (!this.head) {
+//       this.head = newNode
+//       this.tail = newNode
+//     } else {
+//       this.head.prev = newNode
+//       newNode.next = this.head
+//       this.head = newNode
+//     }
+//     this.length++
+//     return this
+//   }
+//   get(index) {
+//     if (index < 0 || index >= this.length) return undefined
+//     if (index <= this.length / 2) {
+//       let count = 0
+//       let curr = this.head
+//       while (count != index) {
+//         curr = curr.next
+//         count++
+//       }
+//       return curr
+//     } else {
+
+//       let count = this.length - 1
+//       let curr = this.tail
+//       while (count != index) {
+//         curr = curr.prev
+//         count--
+//       }
+//       return curr
+//     }
+//   }
+
+//   set(index, val) {
+//     let foundNode = this.get(index)
+//     if (foundNode != null) {
+//       foundNode.val = val
+//       return true
+//     }
+//     return false
+//   }
+//   insert(ind, val) {
+//     if (ind < 0 || ind > this.length) return false
+//     if (ind == 0) return !!this.unshift(val)
+//     if (ind == this.length) return !!this.push(val)
+
+//     let newNode = new Noded(val)
+//     let beforNode = this.get(ind - 1)
+//     let afterNode = beforNode.next
+
+//     beforNode.next = newNode
+//     newNode.prev = beforNode
+//     newNode.next = afterNode
+//     afterNode.prev = newNode
+
+//     this.length++
+
+//     return true
+//   }
+//   remove(ind) {
+//     if (ind < 0 || ind >= this.length) return false
+//     if (ind == 0) return this.shift(val)
+//     if (ind == this.length) return this.pop(val)
+
+//     let removeNode = this.get(ind)
+
+//     removeNode.prev.next = removeNode.next
+//     removeNode.next.prev = removeNode.prev
+//     removeNode.next = null
+//     removeNode.prev = null
+
+//     this.length--
+//     return removeNode
+//   }
+
+// }
+
+// let doublyLL = new doublyLinkList()
+// doublyLL.push(20)
+// doublyLL.push(30)
+// doublyLL.push(40)
+// doublyLL.insert(1, 4000)
+// doublyLL.remove(1)
+// console.log(doublyLL.set(1, 6666))
+// console.log(doublyLL)
+
+// Stacks =======================================================================
+
+// class StackNode {
+//   constructor(val) {
+//     this.val = val
+//     this.next = null
+//   }
+// }
+
+// class Stackd {
+//   constructor() {
+//     this.first = null
+//     this.last = null
+//     this.size = 0
+//   }
+//   push(val) {
+//     let newVal = new StackNode(val)
+//     if (!this.first) {
+//       this.first = newVal
+//       this.last = newVal
+//     } else {
+//       const temp = this.first
+//       this.first = newVal
+//       this.first.next = temp
+//     }
+//     return ++this.size
+//   }
+//   pop() {
+//     if (this.size < 0) return null
+//     const popedVal = this.first
+//     if (this.size === 1) {
+//       this.last = null
+//     }
+//     this.first = this.first.next
+//     this.size--
+//     return popedVal.val
+//   }
+// }
+
+
+// const stack = new Stackd()
+
+// stack.push(20)
+// stack.push(30)
+// stack.pop()
+
+
+// Queue ===============================================================================
+
+
+// class QueueNode {
+//   constructor(val) {
+//     this.val = val
+//     this.next = null
+//   }
+// }
+
+// class Queue {
+//   constructor() {
+//     this.first = null
+//     this.last = null
+//     this.size = 0
+//   }
+//   enQueue(val) {
+//     const newNode = new QueueNode(val)
+//     if (!this.first) {
+//       this.first = newNode
+//       this.last = newNode
+//     } else {
+//       this.last.next = newNode
+//  1`     this.last = newNode
+//     }
+//     return ++this.size
+//   }
+//   deQueue() {
+
+//     if (!this.first) return null
+//     const temp = this.first
+//     if (this.first == this.last) {
+//       this.last = null
+//     }
+
+//     this.first = this.first.next
+//     this.size--
+//     return temp.val
+
+//   }
+// }
+
+
+// const queue = new Queue()
+
+// function getData() {
+//   return "hekk"
+// }
+
+let data = new getData()
+
+// queue.enQueue(10)
+// queue.enQueue(20)
+// queue.enQueue(30)
+// queue.deQueue()
+// queue.deQueue()
+// queue.deQueue()
+
+// console.log(queue)
+
+
+//  ====================Heaps ===================================
+
+class maxBinaryHeap {
+  constructor() {
+    this.value = [40, 39, 33, 18, 27, 12]
+  }
+  insert(ele) {
+    // push the element
+    this.value.push(ele)
+    this.bubbleUp()
+  }
+  bubbleUp() {
+    // get last index and last element
+    let index = this.value.length - 1
+    const element = this.value[index]
+
+    // loop till index less the 0
+    while (index > 0) {
+      // get prent ind and ele
+      let parentIdx = Math.floor((index - 1) / 2)
+      let parentEl = this.value[parentIdx]
+
+      // if new elemet is less then curunt element then break
+      if (element <= parentEl) break
+
+      // swaping the elements
+      this.value[parentIdx] = element;
+      this.value[index] = parentEl;
+      // updating index
+      index = parentIdx
     }
   }
-  return positive > negetive ? positive : negetive
-};
+  shinkDwon() {
+    let idx = 0
+    const length = this.value.length
+    const element = this.value[0]
 
-console.log(maximumCount([-3, -2, -1, 0, 0, 1, 2]))
+    while (true) {
+      let leftChildIdx = 2 * idx + 1
+      let rightChildIdx = 2 * idx + 2
+      let leftChild, rightChild
+      let swap = null
+      if (leftChildIdx < length) {
+        leftChild = this.value[leftChildIdx]
+        if (leftChild > element) {
+          swap = leftChildIdx
+        }
+      }
+      if (rightChildIdx < length) {
+        rightChild = this.value[rightChildIdx]
+        if ((swap === null && rightChild > element) ||
+          (swap !== null && rightChild > leftChild)) {
+          swap = rightChildIdx
+        }
+      }
+
+      if (swap === null) break
+      this.value[idx] = this.value[swap]
+      this.value[swap] = element
+      idx = swap
+    }
+  }
+  extractMax() {
+
+    // getting first and last value
+    const max = this.value[0]
+    const end = this.value.pop()
+    if (this.length > 0) {
+      //  set last value to first
+      this.value[0] = end
+      // trickle dowm
+      this.shinkDwon()
+    }
+    return max
+  }
+
+}
+
+let maxBHeap = new maxBinaryHeap()
+
+// maxBHeap.insert(55)
+// maxBHeap.insert(39)
+// maxBHeap.insert(41)
+// maxBHeap.insert(18)
+// maxBHeap.insert(27)
+// maxBHeap.insert(12)
+// maxBHeap.insert(33)
+// maxBHeap.extractMax()
+// maxBHeap.extractMax()
+// console.log(maxBHeap.extractMax())
+
+// console.log(maxBHeap)
+
+
+// ++++++++===== Priority Queue +++++++++=================
+
+let obj = {}
+
+class Object {
+  constructor() {
+    this.key = null
+    this.val = null
+  }
+}
+
+
+class priorityQueueNode {
+  constructor(val, priority) {
+    this.val = val
+    this.priority = priority
+  }
+}
+class priorityQueue {
+  constructor() {
+    this.value = []
+  }
+  enQueue(val, priority) {
+    const newNode = new priorityQueueNode(val, priority)
+    this.value.push(newNode)
+    this.bubbleUp()
+  }
+  bubbleUp() {
+    // get last index and last element 
+    let index = this.value.length - 1
+    const element = this.value[index]
+    // loop till index less the 0 
+    while (index > 0) {
+      // get prent ind and ele
+      let parentIdx = Math.floor((index - 1) / 2)
+      let parentEl = this.value[parentIdx]
+
+      // if new elemet is less then curunt element then break
+      if (element.priority >= parentEl.priority) break
+
+      // swaping the elements
+      this.value[parentIdx] = element;
+      this.value[index] = parentEl;
+      // updating index 
+      index = parentIdx
+    }
+  }
+  shinkDwon() {
+    let idx = 0
+    const length = this.value.length
+    const element = this.value[0]
+
+    while (true) {
+      let leftChildIdx = 2 * idx + 1
+      let rightChildIdx = 2 * idx + 2
+      let leftChild, rightChild
+      let swap = null
+      if (leftChildIdx < length) {
+        leftChild = this.value[leftChildIdx]
+        if (leftChild.priority < element.priority) {
+          swap = leftChildIdx
+        }
+      }
+      if (rightChildIdx < length) {
+        rightChild = this.value[rightChildIdx]
+        if ((swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)) {
+          swap = rightChildIdx
+        }
+      }
+
+      if (swap === null) break
+      this.value[idx] = this.value[swap]
+      this.value[swap] = element
+      idx = swap
+    }
+  }
+  deQueue() {
+
+    // getting first and last value 
+    const min = this.value[0]
+    const end = this.value.pop()
+    if (this.length > 0) {
+      //  set last value to first 
+      this.value[0] = end
+      // trickle dowm
+      this.shinkDwon()
+    }
+    return min
+  }
+
+}
+
+let PQ = new priorityQueue()
+
+PQ.enQueue("P1", 1)
+PQ.enQueue("P2", 2)
+PQ.enQueue("P3", 3)
+PQ.enQueue("P5", 5)
+PQ.enQueue("P6", 6)
+PQ.deQueue()
+PQ.deQueue()
+PQ.deQueue()
+PQ.deQueue()
+
+// console.log(PQ.deQueue().priority)
+// console.log(PQ.deQueue().priority)
+// console.log(PQ.deQueue().priority)
+// console.log(PQ.deQueue().priority)
+
+// console.log(PQ)
+
+
+// ++++++++=====ProtoType Class And Inhertance=====++++++++++++++++++++++
+
+function user(user, age) {
+  this.user = user
+  this.age = age
+}
+user.prototype.increment = function () {
+  this.age++
+}
+user.prototype.print = function () {
+  return this
+}
+let a = new user("prem", 30)
+
+Object.prototype.length = "hello Data"
+const objd = {
+  name: "hello", age: 20
+}
+
+const techSup = {
+  isAvail: false
+}
+const TASup = {
+  makAss: "js",
+  fullTime: true,
+  // __proto__:techSup
+}
+
+Object.setPrototypeOf(techSup, TASup)
+
+// console.log(TASup)
+
+
+
+// console.log(objd.length)
+
+const str = "Prem             "
+const str2 = "Hello     "
+String.prototype.trueLen = function () {
+  console.log(this)
+  let trueL = this
+}
+
+console.log(str.trueLen())
+// console.log(a.increment())
+// console.log(a.print().age)

@@ -968,5 +968,646 @@
 //   return arr
 // }
 
-const re = quickSort([6, 2, 12, 4, 10, 7, 5, 8])
-console.log(re)
+// var MinStack = function () {
+//   this.elem = [];
+// };
+
+
+// MinStack.prototype.pushd = function (val) {
+//   this.elem.push(val)
+// };
+
+
+// MinStack.prototype.pop = function () {
+//   if (this.length < 0) return false
+//   this.elem.pop();
+// };
+
+
+// MinStack.prototype.top = function () {
+//   return this.elem[this.elem.length - 1].value
+// };
+
+// MinStack.prototype.getMin = function () {
+//   let min = 0
+//   for (let i = 0; i < this.elem.length; i++) {
+//     if (min < this.elem[i]) {
+//       min = this.elem[i]
+//     }
+//   }
+//   return min
+// }
+
+// let d = MinStack.prototype.pushd(20)
+// console.log(d)
+
+// const re = quickSort([6, 2, 12, 4, 10, 7, 5, 8])
+// console.log(re)
+
+// class Stack {
+//   constructor() {
+//     this.elem = []
+//   }
+//   push(val) {
+//     this.elem.push(val)
+//   }
+//   pop() {
+//     if (this.elem.length < 0) return
+//     this.elem.pop()
+//     console.log(this.elem)
+//   }
+//   top() {
+//     if (this.elem.length < 0) return
+//     let top = this.elem[this.elem.length - 1]
+//     return top
+//   }
+//   getMin() {
+//     let min = Infinity;
+//     for (let i = 0; i < this.elem.length; i++) {
+//       if (min > this.elem[i]) {
+//         min = this.elem[i]
+//       }
+//     }
+//     return min
+//   }
+// }
+
+// let d = new Stack()
+// d.push(-2)
+// d.push(-3)
+// d.push(-20)
+// d.push(2)
+// d.push(5)
+
+// console.log(d.getMin())
+
+
+// Promisses 
+
+// var timeLimit = function (fn, t) {
+//   return async function (...args) {
+//     const timeoutPromise = new Promise((resolve, reject) =>
+//       setTimeout(() => reject("Time Limit Exceeded"), t)
+//     );
+//     return Promise.race([fn(...args), timeoutPromise]);
+//   }
+// };
+
+// let res = timeLimit(fn = async (n) => {
+//   await new Promise(res => setTimeout(res, 100));
+//   return n * n;
+// },
+//   inputs = [5],
+//   t = 50)
+
+
+
+// // next smaller Element 
+
+// var largestRectangleArea = function (heights) {
+//   // heights.push(0)
+//   let stack = [];
+//   let res = 0;
+//   for (let i = 0; i < heights.length; i++) {
+//     let heightStart = i;
+//     // console.log(stack)
+//     while (stack.length && stack[stack.length - 1][1] > heights[i]) {
+//       // console.log(stack[stack.length - 1][1], stack.length)
+
+//       let [pos, height] = stack.pop();
+//       res = Math.max(res, (i - pos) * height);
+//       // console.log(res)
+
+//       heightStart = pos;
+//     }
+//     stack.push([heightStart, heights[i]]);
+//   }
+//   return res;
+// };
+// function test(n) {
+//   if (n < 0) {
+//     return n
+//   }
+
+
+//   console.log(test(n - 1))
+
+
+// }
+
+
+// var timeLimit = function (fn, t) {
+//   return async function (...args) {
+//     console.log(args)
+
+//   }
+// };
+
+// var timeLimit = function (fn, t) {
+//   return function (...args) {
+
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => reject("Time Limit Exceeded"), t);
+//       console.log(fn)
+//       fn(...args).then(resolve, reject);
+//     });
+
+//   }
+// }
+
+
+
+
+
+// var timeLimit = function (fn, t) {
+//   return async function (...args) {
+//     console.log(...args)
+//     const timeoutPromise = new Promise((resolve, reject) =>
+//       setTimeout(() => reject("Time Limit Exceeded"), t)
+//     );
+//     return Promise.race([fn(...args), timeoutPromise]);
+//   }
+// };
+
+// var timeLimit = (fn, t) => (...args) => new Promise((resolve, reject) => {
+//   setTimeout(() => reject("Time Limit Exceeded"), t);
+//   fn(...args).then(resolve).catch(reject);
+// });
+
+// const res = timeLimit(fn = async (a, b) => {
+//   await new Promise(res => setTimeout(res, 120));
+//   return a + b;
+// },
+//   inputs = [5],
+//   t = 150)
+
+// let test = res()
+// console.log(test)
+// test.then((d) => {
+//   console.log(d)
+// }).catch((e) => {
+//   console.log(e)
+// })
+// console.log(test)
+// console.log(largestRectangleArea([2, 1, 5, 6, 2, 3]))
+
+
+// var debounce = function (fn, t) {
+//   let clearTimeout;
+//   return function (...args) {
+//     clearTimeout(clearTimeout)
+//     clearTimeout = setTimeout(function () {
+//       fn(...args)
+//     }, t)
+//   }
+// };
+
+// const res = debounce(t = 50,
+//   calls = [
+//     { "t": 50, inputs: [1] },
+//     { "t": 75, inputs: [2] }
+//   ])
+
+
+var TimeLimitedCache = function () {
+  this.cache = new Map()
+};
+
+
+TimeLimitedCache.prototype.set = function (key, value, duration) {
+  const hasExist = this.cache.get(key)
+  if (hasExist) { clearTimeout(hasExist.tid) }
+  const tid = setTimeout(() => {
+    this.cache.delete(key)
+  }, duration)
+  this.cache.set(key, {
+    value,
+    tid
+  })
+
+  return !!hasExist
+};
+TimeLimitedCache.prototype.get = function (key) {
+  if (this.cache.has(key)) return this.cache.get(key).value
+  return -1
+};
+
+TimeLimitedCache.prototype.count = function () {
+  return this.cache.size
+};
+var obj = new TimeLimitedCache()
+obj.set(1, 42, 1000); // false
+// obj.get(1) // 42
+// obj.count() // 1
+
+
+
+
+// var sortBy = function (arr, fn) {
+//   return arr.sort((a, b) => fn(a) - fn(b));
+// };
+// const sortBy = (arr, fn) => {
+
+//   Array.from(arr).sort((a, b) => {
+//     console.log(fn(a))
+//     return fn(a) > fn(b) ? 1 : -1
+//   })
+// }
+
+
+// class ArrayWrapper {
+//   constructor(num) {
+//     this.nums = num;
+//     console.log()
+//   }
+//   valueOf() {
+//     console.log(this.nums)
+//     return this.nums.reduce((acc, num) => acc + num, 0);
+//   }
+//   toString() {
+//     return `[${this.nums.join(',')}]`;
+//   }
+// }
+
+
+// const obj1 = new ArrayWrapper([]);
+// const obj2 = new ArrayWrapper([1, 2]);
+// // console.log(obj1 + obj2)
+
+// console.log(obj2.toString(obj1))
+
+// class ArrayWrapper {
+//   constructor(arr) {
+//     this.arr = [arr]
+//   }
+// }
+
+// var sortBy = function (arr, fn) {
+//   return arr.customSort((a, b) => fn(a) - fn(b))
+// };
+
+// obj1.valueOf()
+
+// console.log(obj1)
+
+// console.log(obj1 + obj2)
+
+
+// console.log(sortBy([{ "x": 1 }, { "x": 0 }, { "x": -1 }], fn = (d) => d.x))
+
+
+
+/* Javascript program to solve Rat in
+  a Maze problem using backtracking */
+
+// Size of the maze
+let N;
+
+/* A utility function to print
+  solution matrix sol[N][N] */
+function printSolution(sol) {
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++)
+      document.write(
+        " " + sol[i][j] + " ");
+    document.write("<br>");
+  }
+}
+
+/* A utility function to check
+    if x, y is valid index for N*N maze */
+function isSafe(maze, x, y) {
+  // console.log("maze, x, y", maze, x, y)
+  // if (x, y outside maze) return false
+  return (x >= 0 && x < N && y >= 0
+    && y < N && maze[x][y] == 1);
+}
+
+/* This function solves the Maze problem using
+  Backtracking. It mainly uses solveMazeUtil()
+  to solve the problem. It returns false if no
+  path is possible, otherwise return true and
+  prints the path in the form of 1s. Please note
+  that there may be more than one solutions, this
+  function prints one of the feasible solutions.*/
+
+// function solveMaze(maze) {
+//   let sol = [];
+
+//   for (let i = 0; i < N; i++) {
+//     sol[i] = []
+//     for (let j = 0; j < N; j++) {
+//       sol[i][j] = 0;
+//     }
+//   }
+//   // console.log("sol", maze)
+
+//   if (solveMazeUtil(maze, 0, 0, sol) == false) {
+//     return false;
+//   }
+
+//   // printSolution(sol);
+//   // return true;
+// }
+// /* A recursive utility function to solve Maze
+//   problem */
+// function solveMazeUtil(maze, x, y, sol) {
+//   // if (x, y is goal) return true
+
+//   // console.log("x", x, "y", y, "maze[x][y]", maze[x][y], "sol", sol, "N", N)
+
+//   if (x == N - 1 && y == N - 1 && maze[x][y] == 1) {
+//     sol[x][y] = 1;
+//     return true;
+//   }
+
+//   // Check if maze[x][y] is valid
+//   if (isSafe(maze, x, y) == true) {
+//     // Check if the current block is already part of solution path.
+//     // console.log(sol)
+//     if (sol[x][y] == 1)
+//       return false;
+
+//     // mark x, y as part of solution path
+//     sol[x][y] = 1;
+
+//     /* Move forward in x direction */
+//     if (solveMazeUtil(maze, x + 1, y, sol))
+//       return true;
+
+//     /* If moving in x direction doesn't give
+//     solution then Move down in y direction */
+//     if (solveMazeUtil(maze, x, y + 1, sol))
+//       return true;
+
+//     /* If moving in y direction doesn't give
+//     solution then Move backwards in x direction */
+//     if (solveMazeUtil(maze, x - 1, y, sol))
+//       return true;
+
+//     /* If moving backwards in x direction doesn't give
+//     solution then Move upwards in y direction */
+//     if (solveMazeUtil(maze, x, y - 1, sol))
+//       return true;
+
+//     /* If none of the above movements works then
+//     BACKTRACK: unmark x, y as part of solution
+//     path */
+//     sol[x][y] = 0;
+//     return false;
+//   }
+
+//   return false;
+// }
+
+// let maze = [
+//   [1, 0, 0, 0],
+//   [1, 1, 0, 1],
+//   [0, 1, 0, 0],
+//   [1, 1, 1, 1]];
+
+// N = maze.length;
+
+// console.log(solveMaze(maze))
+
+
+// // This code is contributed by avanitrachhadiya2155
+
+
+// var promiseAll = async function (functions) {
+//   return await new Promise((resolve, reject) => {
+//     let arr = Array(functions.length);
+//     let waitingFor = functions.length;
+
+//     // steps 3 and 4
+//     for (let i = 0; i < waitingFor; ++i) {
+//       functions[i]()
+//         .then((result) => {
+//           arr[i] = result;
+//           if (--waitingFor === 0) resolve(arr);
+//         }).catch(reject);
+//     }
+//   });
+// };
+
+
+// Array.prototype.groupBy = function (fn) {
+//   const res = {}
+//   for (const data of this) {
+//     let key = fn(data)
+//     if (!res.hasOwnProperty(key)) {
+//       res[key] = []
+//     }
+//     res[key].push(data)
+//   }
+//   return res
+// // };
+
+// // let res = Array.groupBy(array = [
+// //   { "id": "1" },
+// //   { "id": "1" },
+// //   { "id": "2" }
+// // ],
+// //   fn = function (item) {
+// //     return item.id;
+// //   })
+
+
+// // console.log(res.groupBy)
+
+
+// // var compactObject = function (obj) {
+// //   let ans = []
+// //   for (const data in obj) {
+// //     if (obj[data]) {
+// //       ans.push(obj[data])
+// //     }
+// //   }
+// //   console.log(ans)
+// // };
+
+// // var containsDuplicate = function (nums) {
+// //   if (nums.length == 1) return false
+// //   let obj = {}
+// //   for (let i = 0; i < nums.length; i++) {
+// //     if (obj[nums[i]]) {
+// //       return true
+// //     } else {
+// //       obj[nums[i]] = 1
+// //     }
+// //   }
+// //   return false
+// // };
+
+// // Find Sum of N natural number recursive =======
+
+// // const findSumNaturalNo = (n) => {
+// //   if (n === 1) return 1
+// //   let ans = findSumNaturalNo(n - 1)
+// //   return n + ans
+// // }
+// // febinacci series recursive =======================
+
+// // const fibnacciNo = (n) => {
+// //   console.log(n)
+// //   if (n == 1 || n == 2) return 1;
+// //   return fibnacciNo(n - 1) + fibnacciNo(n - 2)
+// // }
+
+// // console.log(fibnacciNo(5))
+
+// // var fibGenerator = function* () {
+// //   let ans = [0, 1];
+// //   let count = 0
+// //   yield ans[0];
+// //   yield ans[1];
+// //   while (true) {
+// //     ans.push(ans[count] + ans[count + 1])
+// //     count++
+// //     yield ans[ans.length - 1]
+// //   }
+
+// // }
+
+
+
+// // const gen = fibGenerator();
+// // console.log(gen.next().value)
+
+// // console.log(gen.next().value)
+
+// // console.log(gen.next().value)
+
+// // console.log(gen.next().value)
+// // console.log(gen.next().value)
+
+
+// // class Calculator {
+
+// //   constructor(value) {
+// //     this.val = value
+// //   }
+
+// //   add(value) {
+// //     this.val = this.val + value
+// //   }
+
+// //   subtract(value) {
+// //     this.val = this.val - value
+// //   }
+
+// //   multiply(value) {
+// //     this.val = this.val * value
+// //   }
+
+// //   divide(value) {
+// //     if (value === 0) {
+// //       this.val = "Division by zero is not allowed"
+// //     } else {
+// //       this.val = this.val / value
+// //     }
+// //   }
+
+// //   power(value) {
+// //     this.val = this.val ** 2
+// //   }
+
+// //   getResult() {
+// //     return this.val
+// //   }
+// // }
+
+// // let cal = new Calculator(20)
+// // cal.divide(0)
+// // // cal.power(2)
+// // // cal.subtract(7)
+// // console.log(cal.getResult())
+
+// //  Learning Pattern
+
+// // function patternOne(n) {
+// //   for (let row = 0; row < n; row++) {
+// //     for (let col = 0; col <= row; col++) {
+// //       // document.write("*")
+// //       console.log("*")
+// //     }
+// //     console.log('\n')
+// //     // document.write('<br>')
+// //   }
+// // }
+
+// // patternOne(4)
+
+
+// var twoSum = function (numbers, target) {
+//   // set a left pointer to the first element of the array
+//   let left = 0;
+//   // set a right pointer to the last element of the array
+//   let right = numbers.length - 1
+
+//   // loop through the array; check if left and right add to target
+//   while (numbers[left] + numbers[right] !== target) {
+//     // sum is less than the target, increase left pointer
+//     if (numbers[left] + numbers[right] < target) {
+//       left++
+//       // sum is greater than the target, decrease right pointer
+//     } else {
+//       right--
+//     }
+//   }
+//   // once their sum equals the target, return their indices
+//   return [left, right]
+// };
+
+// console.log(twoSum([-1, -2, -3, -4, -5], -8))
+
+// var maximumWealth = function (accounts) {
+//   let richest = 0
+//   for (let i = 0; i < accounts.length; i++) {
+//     let add = 0
+//     for (let j = 0; j < accounts[i].length; j++) {
+//       add += accounts[i][j]
+//     }
+//     if (add > richest) {
+//       richest = add
+//     }
+//   }
+//   return richest
+// };
+
+// const ispalindrom = (n) => {
+//   let l = 0
+//   let r = n.length - 1
+//   function solve(data, l, r) {
+//     if (l >= r) return true
+//     if (data[l] != data[r]) return false
+//     return solve(data, l + 1, r - 1)
+//   }
+//   return solve(n, l, r)
+// }
+// console.log(ispalindrom(""))
+
+
+
+// var join = function (arr1, arr2) {
+
+//   let res = {};
+//   [...arr1, ...arr2].map((item) => {
+//     let key = item.id;
+//     res[key] = { ...res[key], ...item };
+//   });
+//   return Object.values(res);
+// };
+
+
+
+
+// console.log(join(arr1 = [
+//   { "id": 2, "x": 3, "y": 6 },
+//   { "id": 1, "x": 2, "y": 3 }
+
+// ],
+//   arr2 = [
+//     { "id": 2, "x": 10, "y": 20 },
+//     { "id": 3, "x": 0, "y": 0 }
+//   ]))
