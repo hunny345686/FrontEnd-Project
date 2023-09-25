@@ -1423,13 +1423,13 @@ Object.setPrototypeOf(techSup, TASup)
 
 // console.log(objd.length)
 
-const str = "Prem             "
-const str2 = "Hello     "
-String.prototype.trueLen = function () {
-  console.log(this)
-  let trueL = this
-}
+// const str = "Prem             "
+// const str2 = "Hello     "
+// String.prototype.trueLen = function () {
+//   console.log(this)
+//   let trueL = this
+// }
 
-console.log(str.trueLen())
+// console.log(str.trueLen())
 // console.log(a.increment())
 // console.log(a.print().age)

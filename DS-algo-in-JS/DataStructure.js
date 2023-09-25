@@ -142,8 +142,6 @@
 //   }
 // }
 
-
-
 // class AddNode {
 //   constructor(val) {
 //     this.val = val
@@ -409,61 +407,61 @@
 
 
 
-// Hash Tabel Implementation
+// Hash Tabel Implementation ++++++++++++++==-=======
 
-class HashTable {
-  constructor(size = 7) {
-    this.dataMap = new Array(size)
-  }
-  _hash(key) {
-    let hash = 0
-    for (let i = 0; i < key.length; i++) {
-      hash = (hash + key.charCodeAt(i) * 23) % this.dataMap.length
-    }
-    return hash
-  }
+// class HashTable {
+//   constructor(size = 7) {
+//     this.dataMap = new Array(size)
+//   }
+//   _hash(key) {
+//     let hash = 0
+//     for (let i = 0; i < key.length; i++) {
+//       hash = (hash + key.charCodeAt(i) * 23) % this.dataMap.length
+//     }
+//     return hash
+//   }
 
-  set(key, value) {
-    let index = this._hash(key)
-    if (!this.dataMap[index]) {
-      this.dataMap[index] = []
-    }
-    this.dataMap[index].push([key, value])
-    return this
-  }
+//   set(key, value) {
+//     let index = this._hash(key)
+//     if (!this.dataMap[index]) {
+//       this.dataMap[index] = []
+//     }
+//     this.dataMap[index].push([key, value])
+//     return this
+//   }
 
-  get(key) {
-    let index = this._hash(key)
-    if (this.dataMap[index]) {
-      for (let i = 0; i < this.dataMap[index].length; i++) {
-        if (this.dataMap[index][i][0] === key) {
-          return this.dataMap[index][i][1]
-        }
-      }
-    }
-    return undefined
-  }
-  key() {
-    let allKey = []
-    for (let i = 0; i < this.dataMap.length; i++) {
-      if (this.dataMap[i]) {
-        for (let j = 0; j < this.dataMap[i].length; j++) {
-          allKey.push(this.dataMap[i][j][0])
-        }
-      }
+//   get(key) {
+//     let index = this._hash(key)
+//     if (this.dataMap[index]) {
+//       for (let i = 0; i < this.dataMap[index].length; i++) {
+//         if (this.dataMap[index][i][0] === key) {
+//           return this.dataMap[index][i][1]
+//         }
+//       }
+//     }
+//     return undefined
+//   }
+//   key() {
+//     let allKey = []
+//     for (let i = 0; i < this.dataMap.length; i++) {
+//       if (this.dataMap[i]) {
+//         for (let j = 0; j < this.dataMap[i].length; j++) {
+//           allKey.push(this.dataMap[i][j][0])
+//         }
+//       }
 
-      return allKey
-    }
-  }
-}
+//       return allKey
+//     }
+//   }
+// }
 
-let Htable = new HashTable()
+// let Htable = new HashTable()
 
-Htable.set("data1", 2)
-Htable.set("data2", 1)
-Htable.set("data3", 3)
-Htable.set("data4", 4)
-Htable.set("data6", 5)
+// Htable.set("data1", 2)
+// Htable.set("data2", 1)
+// Htable.set("data3", 3)
+// Htable.set("data4", 4)
+// Htable.set("data6", 5)
 
 // console.log(Htable.key())
 
@@ -477,7 +475,6 @@ class Graph {
   constructor() {
     this.adjacencyList = {}
   }
-
   addVertex(vertex) {
     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
   }
@@ -489,20 +486,183 @@ class Graph {
     this.adjacencyList[ver1] = this.adjacencyList[ver1].filter(v => v !== ver2)
     this.adjacencyList[ver2] = this.adjacencyList[ver2].filter(v => v !== ver1)
   }
+  removeVertex(ver1) {
+    while (this.adjacencyList[ver1].length) {
+      const adjacencyVertex = this.adjacencyList[ver1].pop()
+      this.removeEdge(ver1, adjacencyVertex)
+    }
+    delete this.adjacencyList[ver1]
+  }
+  // Recursive DFS Graph
+  DFSSearch(start) {
+    const result = []
+    const visited = {}
+    const adjacencyList = this.adjacencyList;
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true
+      result.push(vertex)
+      adjacencyList[vertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          return dfs(neighbor)
+        }
+      })
+    })(start)
+    return result
+  }
+  // Itrative DFS Graph
+  DFSsearchItrative(start) {
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    let currVertex;
+
+    visited[start] = true
+
+    while (stack.length) {
+      currVertex = stack.pop()
+      result.push(currVertex)
+
+      this.adjacencyList[currVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true
+          stack.push(neighbor)
+        }
+      })
+    }
+    return result
+  }
+  BFSSearch(start) {
+    const queue = [start]
+    const result = []
+    const visited = {};
+    visited[start] = true
+    let currVertex
+    while (queue.length) {
+      currVertex = queue.shift()
+      result.push(currVertex)
+      this.adjacencyList[currVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor)
+        }
+      })
+    }
+    return result
+  }
 }
 
 let graph = new Graph()
 
-graph.addVertex("hello")
-graph.addVertex("hi")
-graph.addVertex("how")
-graph.addEdge("how", "hello")
-graph.addEdge("how", "hi")
-graph.addEdge("how", "hello")
+graph.addVertex("A")
+graph.addVertex("B")
+graph.addVertex("C")
+graph.addVertex("D")
+graph.addVertex("E")
+graph.addVertex("F")
 
-graph.removeEdge("how", "hello")
+graph.addEdge("A", "B")
+graph.addEdge("A", "C")
+graph.addEdge("B", "D")
+graph.addEdge("C", "E")
+graph.addEdge("D", "E")
+graph.addEdge("D", "F")
+graph.addEdge("E", "F")
+
+// console.log(graph.DFSSearch("A"))
+// console.log(graph.BFSSearch("A"))
+
+// console.log(graph)
 
 
+class PriorityQueue {
+  constructor() {
+    this.value = []
+  }
+  enqueue(val, priority) {
+    this.value.push({ val, priority })
+    this.sort();
+  }
+  dequeue() {
+    return this.value.shift()
+  }
+  sort() {
+    this.value.sort((a, b) => a.priority - b.priority)
+  }
+}
 
-console.log(graph)
+class WeightedGraph {
+  constructor() {
+    this.adjacencyList = {}
+  }
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
+  }
 
+  addEdge(ver1, ver2, weight) {
+    this.adjacencyList[ver1].push({ node: ver2, weight })
+    this.adjacencyList[ver2].push({ node: ver1, weight })
+  }
+  Dijkstra(start, finish) {
+    const nodes = new PriorityQueue()
+    const distance = {}
+    const previous = {}
+    let path = [];
+    let smallest;
+
+    for (let vertex in this.adjacencyList) {
+      if (vertex === start) {
+        distance[vertex] = 0
+        nodes.enqueue(vertex, 0)
+      } else {
+        distance[vertex] = Infinity
+        nodes.enqueue(vertex, Infinity)
+      }
+      previous[vertex] = null
+    }
+    while (nodes.value.length) {
+      smallest = nodes.dequeue().val
+      if (smallest == finish) {
+        while (previous[smallest]) {
+          path.push(smallest)
+          smallest = previous[smallest];
+        }
+        break
+      }
+      if (smallest || distance[smallest] !== Infinity) {
+        for (let neighbor in this.adjacencyList[smallest]) {
+          let nextNode = this.adjacencyList[smallest][neighbor];
+          let candidate = distance[smallest] + nextNode.weight
+          let nextNeighbor = nextNode.node
+          if (candidate < distance[nextNeighbor]) {
+            distance[nextNeighbor] = candidate;
+            previous[nextNeighbor] = smallest
+            nodes.enqueue(nextNeighbor, candidate)
+          }
+        }
+      }
+    }
+    return path.concat(smallest).reverse();
+  }
+}
+const weightedGraph = new WeightedGraph()
+
+weightedGraph.addVertex("A")
+weightedGraph.addVertex("B")
+weightedGraph.addVertex("C")
+weightedGraph.addVertex("D")
+weightedGraph.addVertex("E")
+weightedGraph.addVertex("F")
+
+weightedGraph.addEdge("A", "B", 4)
+weightedGraph.addEdge("A", "C", 2)
+weightedGraph.addEdge("B", "E", 3)
+weightedGraph.addEdge("C", "D", 2)
+weightedGraph.addEdge("C", "F", 4)
+weightedGraph.addEdge("D", "E", 3)
+weightedGraph.addEdge("D", "F", 1)
+weightedGraph.addEdge("E", "F", 1)
+
+weightedGraph.Dijkstra("A", "E")
+
+console.log(weightedGraph)

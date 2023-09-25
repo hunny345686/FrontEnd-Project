@@ -221,22 +221,49 @@ const mergeSort = (arr) => {
 
 // console.log(mergeSort([3, 0, -1, -10, 5, 8]))
 
-const str = "Prem             "
-const str2 = "Hello     "
-String.prototype.trueLen = function () {
-  let withSpaceL = this.length
-  let trueL = this.trim().length
-  return `Totle Lenth is ${withSpaceL} and total word lenth is ${trueL}`
+// const str = "Prem             "
+// const str2 = "Hello     "
+// String.prototype.trueLen = function () {
+//   let withSpaceL = this.length
+//   let trueL = this.trim().length
+//   return `Totle Lenth is ${withSpaceL} and total word lenth is ${trueL}`
+// }
+
+// let obj = {
+//   name: "prem"
+// }
+
+// console.log(OB.getOwnPropertyDescriptor(obj, "name"))
+
+
+// // console.log(str2.trueLen())
+
+// / +++++++++++=========Quick Sort ++++++++++============
+const swaphelper = (arr, fIdx, sIdx) => {
+  let temp = arr[fIdx]
+  arr[fIdx] = arr[sIdx]
+  arr[sIdx] = temp
 }
-
-let obj = {
-  name: "prem"
+const pivetHelperCode = (arr, pIdx = 0, endPIdx = arr.length - 1) => {
+  let swapIdx = pIdx
+  for (let i = pIdx + 1; i <= endPIdx; i++) {
+    if (arr[i] < arr[pIdx]) {
+      swapIdx++
+      swaphelper(arr, swapIdx, i)
+    }
+  }
+  swaphelper(arr, pIdx, swapIdx)
+  return swapIdx
 }
-
-console.log(OB.getOwnPropertyDescriptor(obj, "name"))
-
-
-// console.log(str2.trueLen())
+const quickSort = (arr, left = 0, right = arr.length - 1) => {
+  if (left < right) {
+    let pIdx = pivetHelperCode(arr, left, right)
+    quickSort(arr, left, pIdx - 1)
+    quickSort(arr, pIdx + 1, right)
+  }
+  return arr
+}
+console.log(quickSort([4, 3, 5, 1, 2, 6, 3, 4, 5, 7, 9, 0]))
 
 
 
