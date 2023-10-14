@@ -263,7 +263,215 @@ const quickSort = (arr, left = 0, right = arr.length - 1) => {
   }
   return arr
 }
-console.log(quickSort([4, 3, 5, 1, 2, 6, 3, 4, 5, 7, 9, 0]))
+
+// Patern Printing
+// 1
+// 2 1
+// 3 2 1
+// 4 3 2 1
+// 5 4 3 2 1
+// for (let row = 1; row <= 5; row++) {
+//   for (let col = row; col >= 1; col--) {
+//     console.log(col)
+//   }
+//   console.log("\n")
+// }
+
+//  a
+//  b b
+//  c c c
+//  d d d d
+
+// for (let row = 1; row <= 5; row++) {
+//   for (let col = 0; col < row; col++) {
+//     console.log(String.fromCharCode(row + 64))
+//   }
+//   console.log("\n")
+// }
+
+// *****
+// ****
+// ***
+// **
+// *
+// 1st Arroch 
+for (let row = 5; row >= 1; row--) {
+  let str = ""
+  for (let col = 0; col < row; col++) {
+    str += "*"
+  }
+  // console.log(str)
+}
+// Sec Approch 
+for (let row = 1; row <= 5; row++) {
+  let str = ""
+  for (let col = 0; col < 5 - (row - 1); col++) {
+    str += "*"
+  }
+  // console.log(str)
+}
+
+// 12345
+// 1234
+// 123
+// 12
+// 1
+
+// Appro 1
+for (let row = 1; row <= 5; row++) {
+  let str = ""
+  for (let col = 1; col <= 5 - (row - 1); col++) {
+    str += col + " "
+  }
+  // console.log(str)
+}
+
+// 5
+// 54
+// 543
+// 5432
+// 54321
+
+// Approch 1
+// let n = 5
+// for (let row = 1; row <= n; row++) {
+//   let str = ""
+//   for (let col = n; col >= n - row + 1; col--) {
+//     str += col + " "
+//   }
+//   // console.log(str)
+// }
+
+
+//      *
+//    * *
+//  * * *
+//* * * *
+1
+
+//     21
+//    321
+//   4321
+//  54321
+
+
+for (row = 1; row <= 5; row++) {
+  let str = ""
+  for (let col = 1; col <= 5 - row + 1; col++) {
+    str += " "
+  }
+  for (let col = row; col >= 1; col--) {
+    str += col
+  }
+  // console.log(str)
+}
+
+// Tringle shape
+// ================_++++++++++
+for (let row = 1; row <= 5; row++) {
+  let str = ""
+  for (let col = 0; col < 5 - row; col++) {
+    str += " "
+  }
+  for (let col = 0; col < 2 * row - 1; col++) {
+    str += "*"
+  }
+  // console.log(str)
+}
+// ++++++++++++++=================
+for (let row = 1; row <= 5; row++) {
+  let str = ""
+  for (let col = 1; col <= 5 - row; col++) {
+    str += " "
+  }
+  for (let col = 1; col <= row; col++) {
+    str += col
+  }
+  for (let col = row - 1; col >= 1; col--) {
+    str += col
+  }
+  // console.log(str)
+}
+
+// ++++++++++++++++==++++++++++++++++++++++
+let n = 6
+for (let row = n; row >= 1; row--) {
+  let str = ""
+  for (let col = 1; col <= n - row; col++) {
+    str += " "
+  }
+  for (let col = 1; col <= 2 * row - 1; col++) {
+    str += "*"
+  }
+  console.log(str)
+}
+
+// +++++++++++++++++++=============================
+
+for (let row = 4; row >= 1; row--) {
+  let str = ""
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  for (let col = 1; col <= 8 - 2 * row; col++) {
+    str += " "
+  }
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  console.log(str)
+}
+
+for (let row = 1; row <= 4; row++) {
+  let str = ""
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  for (let col = 1; col <= 8 - 2 * row; col++) {
+    str += " "
+  }
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  console.log(str)
+}
+// +++++++=============================================
+let no = 4
+for (let row = 1; row <= no; row++) {
+  let str = ""
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  for (let col = 1; col <= 2 * no - (2 * row); col++) {
+    str += " "
+  }
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  console.log(str)
+}
+for (let row = no - 1; row >= 1; row--) {
+  let str = ""
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  for (let col = 1; col <= 2 * no - (2 * row); col++) {
+    str += " "
+  }
+  for (let col = 1; col <= row; col++) {
+    str += "*"
+  }
+  console.log(str)
+}
+
+
+
+
+// Bubble
+
+
+
+// console.log(quickSort([4, 3, 5, 1, 2, 6, 3, 4, 5, 7, 9, 0]))
 
 
 
